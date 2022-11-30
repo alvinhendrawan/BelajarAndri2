@@ -2,17 +2,23 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
+ * 201011400342
  */
 package view;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.beans.PropertyVetoException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Alvin Hendrawan
  */
 public class FormUtama extends javax.swing.JFrame {
+    public static FormMahasiswa formMahasiswa;
+    public static FormMataKuliah formMataKuliah;
 
     /**
      * Creates new form FormUtama
@@ -97,9 +103,19 @@ public class FormUtama extends javax.swing.JFrame {
         masterDataMenu.setText("Master Data");
 
         mahasiswaMenuItem.setText("Mahasiswa");
+        mahasiswaMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mahasiswaMenuItemActionPerformed(evt);
+            }
+        });
         masterDataMenu.add(mahasiswaMenuItem);
 
         mataKuliahMenuItem.setText("Mata Kuliah");
+        mataKuliahMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mataKuliahMenuItemActionPerformed(evt);
+            }
+        });
         masterDataMenu.add(mataKuliahMenuItem);
 
         jMenuBar1.add(masterDataMenu);
@@ -155,6 +171,35 @@ public class FormUtama extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_keluarMenuItemActionPerformed
+
+    private void mahasiswaMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mahasiswaMenuItemActionPerformed
+        // TODO add your handling code here:
+        if ((formMahasiswa != null) && formMahasiswa.isVisible()) {
+            try {
+                formMahasiswa.setSelected(true);
+            } catch (PropertyVetoException ex) {
+                
+            }
+        } else {
+            formMahasiswa = new FormMahasiswa();
+            mdiDesktopPane.add(formMahasiswa);
+            formMahasiswa.setVisible(true);
+        }
+    }//GEN-LAST:event_mahasiswaMenuItemActionPerformed
+
+    private void mataKuliahMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mataKuliahMenuItemActionPerformed
+        // TODO add your handling code here:
+        if ((formMataKuliah != null) && formMataKuliah.isVisible()) {
+            try {
+                formMataKuliah.setSelected(true);
+            } catch (PropertyVetoException ex) {
+            }
+        } else {
+            formMataKuliah = new FormMataKuliah();
+            mdiDesktopPane.add(formMataKuliah);
+            formMataKuliah.setVisible(true);
+        }
+    }//GEN-LAST:event_mataKuliahMenuItemActionPerformed
 
     /**
      * @param args the command line arguments
